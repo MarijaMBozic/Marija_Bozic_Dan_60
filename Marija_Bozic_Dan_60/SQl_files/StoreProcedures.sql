@@ -17,7 +17,7 @@ GO
 
 CREATE or alter PROCEDURE Get_AllUsers
 AS
-	select UserId, FullName,DateOfBirth,IDNumber, JMBG, PhoneNumber,tblUser.GenderId, tblGender.Name,tblUser.SectorId, tblSector.Name,tblUser.LocationId, tblLocation.Name , MenagerId  from tblUser
+	select UserId, FullName,DateOfBirth,IDNumber, JMBG, PhoneNumber,tblGender.Name, tblSector.Name, tblLocation.Name , MenagerId  from tblUser
 	left join tblGender on tblUser.GenderId = tblGender.GenderId
 	left join tblSector on tblUser.SectorId = tblSector.SectorId
 	left join tblLocation on tblUser.LocationId = tblLocation.LocationId
@@ -68,6 +68,22 @@ AS
 	select SCOPE_IDENTITY()
 GO
 
+CREATE or alter PROCEDURE Insert_Sector
+	@Name nvarchar(100)
+AS
+	insert into tblSector(Name)
+	values(@Name) 
+	select SCOPE_IDENTITY()
+GO
+
+CREATE or alter PROCEDURE Insert_Location
+	@Name nvarchar(100)
+AS
+	insert into tblLocation(Name)
+	values(@Name) 
+	select SCOPE_IDENTITY()
+GO
+
 CREATE OR ALTER PROCEDURE Delete_User
 	@UserId int
 as
@@ -99,9 +115,9 @@ AS
 	where JMBG=@JMBG
 GO
 
-CREATE PROCEDURE Check_SectorName
+CREATE or alter PROCEDURE Check_SectorName
 @SectorName int
 AS
-	select Name from tblSector
+	select SectorId from tblSector
 	where Name=@SectorName
 GO

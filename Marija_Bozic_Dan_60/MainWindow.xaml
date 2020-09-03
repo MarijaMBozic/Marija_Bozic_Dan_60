@@ -7,6 +7,89 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="20"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="6"/>
+            <ColumnDefinition Width="100"/>
+            <ColumnDefinition Width="6"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="6"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="6"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="6"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="6"/>
+            <ColumnDefinition Width="100"/>
+            <ColumnDefinition Width="50"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="6"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="6"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="6"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="6"/>
+            <RowDefinition Height="6"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="6"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="6"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="6"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="6"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="6"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="6"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="20"/>
+        </Grid.RowDefinitions>       
+        <DataGrid Grid.Column="1" Grid.Row="7" Grid.RowSpan="10" Name="DataGridResults" ItemsSource="{Binding ListOfWorkers, UpdateSourceTrigger=PropertyChanged}"
+                      SelectedItem="{Binding SelectedWorker, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True" HeadersVisibility="Column"
+                      AutoGenerateColumns="False" HorizontalGridLinesBrush="Black" BorderBrush="Black" Foreground="Black" FontWeight="Bold" Grid.ColumnSpan="13">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="FullName " Binding="{Binding FullName}" Width="150"/>
+                <DataGridTextColumn Header="ID number" Binding="{Binding IDNumber}"/>
+                <DataGridTextColumn Header="Date of birth" Binding="{Binding DateOfBirth, StringFormat=dd/MM/yyyy}" Width="100"/>
+                <DataGridTextColumn Header="Gender" Binding="{Binding GenderId}"/>
+                <DataGridTextColumn Header="Phone Number " Binding="{Binding PhoneNumber}" Width="80"/>
+                <DataGridTextColumn Header="Sector" Binding="{Binding Sector}" Width="100"/>
+                <DataGridTextColumn Header="Location" Binding="{Binding Location}" Width="60"/>               
+                <DataGridTemplateColumn Header="Edit" Width="60" >
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <StackPanel Width="150" Orientation="Horizontal">
+                                <Button Name="btnEditManager" Content="Edit" Width="60" Height="20"
+                                         FontWeight="Bold" Margin="0" HorizontalAlignment="Right"
+                                       
+                                        />
+                            </StackPanel>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Header="Delete" Width="60">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <StackPanel>
+                                <Button Name="btnDeleteManager" Content="Delete" Width="60" Height="20"
+                                         FontWeight="Bold" HorizontalAlignment="Right"
+                                        />
+                            </StackPanel>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button Grid.Column="13" Grid.Row="3" Grid.ColumnSpan="3" Name="btnAddNewUser" Content="Add new worker" Width="130" Height="20"
+                
+                Command="{Binding AddNewUser, UpdateSourceTrigger=PropertyChanged}"
+                FontWeight="Bold" HorizontalAlignment="Left"/>
     </Grid>
 </Window>
+
