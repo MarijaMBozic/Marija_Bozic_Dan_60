@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
@@ -217,6 +218,9 @@ namespace Marija_Bozic_Dan_60.ViewModels
                         if (service.AddUser(User) != 0)
                         {
                             MessageBox.Show("You have successfully added new employee");
+                            Thread t = new Thread(() => { Logging.LoggAction("Add new emplyee", "Success", "Succesfully added new emplyee"); });
+                            t.IsBackground = true;
+                            t.Start();
                         }
                     }
                     else if(uniqueJmbg)
@@ -237,6 +241,9 @@ namespace Marija_Bozic_Dan_60.ViewModels
                     {
                         service.UpdateUser(User);
                         MessageBox.Show("You have successfully changed employee data");
+                        Thread t = new Thread(() => { Logging.LoggAction("Update emplyee", "Success", "Succesfully updated emplyee"); });
+                        t.IsBackground = true;
+                        t.Start();
                     }
                     else if (!uniqueJmbg)
                     {
@@ -256,7 +263,6 @@ namespace Marija_Bozic_Dan_60.ViewModels
                 MessageBox.Show(ex.ToString());
             }
         }
-
         
         #endregion
     }

@@ -6,6 +6,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Marija_Bozic_Dan_60.Service
@@ -134,7 +135,6 @@ namespace Marija_Bozic_Dan_60.Service
 
         public List<User> GettAllUsers()
         {
-            int MenagerId;
             List<User> userList = new List<User>();
             using (SqlConnection conn = ConnectionHelper.GetNewConnection())
             {
@@ -293,6 +293,9 @@ namespace Marija_Bozic_Dan_60.Service
                 catch (Exception ex)
                 {
                     System.Diagnostics.Debug.WriteLine("Exeption" + ex.Message.ToString());
+                    Thread t = new Thread(() => { Logging.LoggAction("Add new emplyee", "Error", ex.ToString()); });
+                    t.IsBackground = true;
+                    t.Start();
                     return 0;
                 }
                 finally
@@ -326,6 +329,9 @@ namespace Marija_Bozic_Dan_60.Service
                 catch (Exception ex)
                 {
                     System.Diagnostics.Debug.WriteLine("Exeption" + ex.Message.ToString());
+                    Thread t = new Thread(() => { Logging.LoggAction("Add new sector", "Error", ex.ToString()); });
+                    t.IsBackground = true;
+                    t.Start();
                     return 0;
                 }
                 finally
@@ -358,6 +364,9 @@ namespace Marija_Bozic_Dan_60.Service
                 catch (Exception ex)
                 {
                     System.Diagnostics.Debug.WriteLine("Exeption" + ex.Message.ToString());
+                    Thread t = new Thread(() => { Logging.LoggAction("Add new location", "Error", ex.ToString()); });
+                    t.IsBackground = true;
+                    t.Start();
                     return 0;
                 }
                 finally
@@ -399,6 +408,9 @@ namespace Marija_Bozic_Dan_60.Service
                 catch (Exception ex)
                 {
                     System.Diagnostics.Debug.WriteLine("Exeption" + ex.Message.ToString());
+                    Thread t = new Thread(() => { Logging.LoggAction("Update emplyee", "Error", ex.ToString()); });
+                    t.IsBackground = true;
+                    t.Start();
                     return 0;
                 }
                 finally
@@ -429,7 +441,10 @@ namespace Marija_Bozic_Dan_60.Service
                 catch (Exception ex)
                 {
                     System.Diagnostics.Debug.WriteLine("Exeption" + ex.Message.ToString());
-                    result=false;
+                    Thread t = new Thread(() => { Logging.LoggAction("Delete emplyee", "Error", ex.ToString()); });
+                    t.IsBackground = true;
+                    t.Start();
+                    result =false;
                 }
                 finally
                 {

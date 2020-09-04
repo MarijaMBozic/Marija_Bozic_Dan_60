@@ -81,6 +81,7 @@
     <Compile Include="Models\Location.cs" />
     <Compile Include="Models\Sector.cs" />
     <Compile Include="Models\User.cs" />
+    <Compile Include="Service\Logging.cs" />
     <Compile Include="Service\ReadTxtFile.cs" />
     <Compile Include="Service\ServiceCode.cs" />
     <Compile Include="ViewModels\AddEditNewWorkerViewModel.cs" />
@@ -139,6 +140,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="TXTFiles\Lokacije.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="LogFile\Log.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

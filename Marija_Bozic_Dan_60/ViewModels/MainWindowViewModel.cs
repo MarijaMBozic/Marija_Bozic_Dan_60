@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 
@@ -156,6 +157,9 @@ namespace Marija_Bozic_Dan_60.ViewModels
                     {
                         MessageBox.Show("You have successfully deleted employee");
                         ListOfWorkers = new ObservableCollection<User>(service.GettAllUsers());
+                        Thread t = new Thread(() => { Logging.LoggAction("Delete emplyee", "Success", "Succesfully deleted emplyee"); });
+                        t.IsBackground = true;
+                        t.Start();
                     }
                 }
             }

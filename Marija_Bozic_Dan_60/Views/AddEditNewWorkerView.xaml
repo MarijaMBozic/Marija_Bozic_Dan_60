@@ -59,17 +59,17 @@
         <Label Grid.Column="1" Grid.Row="1"  Visibility="{Binding IsForEdit, Converter={StaticResource BoolToVisibilityInverseConverter}}"  Grid.ColumnSpan="15" Name="lblNewEmployed" Content="Add New employed" Padding="0" HorizontalAlignment="Center"/>
         <Label Grid.Column="1" Grid.Row="1" Visibility="{Binding IsForEdit, Converter={StaticResource BoolToVisibilityConverter}}" Grid.ColumnSpan="15" Name="lblEditEmployed" Content="Edit employed" Padding="0" HorizontalAlignment="Center"/>
         <Label Grid.Column="1" Grid.Row="5" Name="lblFullname" Content="Fullname:" Padding="0" HorizontalAlignment="Right"/>
-        <Label Grid.Column="4" Grid.Row="5" Name="lblValidationFullname" Padding="0" Grid.ColumnSpan="7" Grid.RowSpan="3" HorizontalAlignment="Right"/>
+        <Label Grid.Column="4" Grid.Row="5" Name="lblValidationFullname" Padding="0" Grid.ColumnSpan="7" Grid.RowSpan="3" HorizontalAlignment="Left"/>
         <Label Grid.Column="1" Grid.Row="7" Name="lblIDNumber" Content="IDNumber:" Padding="0" HorizontalAlignment="Right"/>
-        <Label Grid.Column="4" Grid.Row="7" Name="lblValidationIDNumber" Grid.ColumnSpan="7" Grid.RowSpan="5" Padding="0" HorizontalAlignment="Right"/>
+        <Label Grid.Column="4" Grid.Row="7" Name="lblValidationIDNumber" Grid.ColumnSpan="7" Grid.RowSpan="5" Padding="0" HorizontalAlignment="Left"/>
         <Label Grid.Column="1" Grid.Row="9" Name="lblJmbg" Content="Jmbg:" Padding="0" HorizontalAlignment="Right"/>
-        <Label Grid.Column="4" Grid.Row="9" Name="lblValidationJmbg" Grid.ColumnSpan="6" Grid.RowSpan="3" Padding="0" HorizontalAlignment="Right"/>
+        <Label Grid.Column="4" Grid.Row="9" Name="lblValidationJmbg" Grid.ColumnSpan="6" Grid.RowSpan="3" Padding="0" HorizontalAlignment="Left"/>
         <Label Grid.Column="9" Grid.Row="5" Name="lblGender" Content="Gender:" Padding="0" HorizontalAlignment="Right"/>
-        <Label Grid.Column="4" Grid.Row="5" Name="lblValidationGender" Grid.ColumnSpan="7" Grid.RowSpan="5" Padding="0" HorizontalAlignment="Right"/>
+        <Label Grid.Column="4" Grid.Row="5" Name="lblValidationGender" Grid.ColumnSpan="7" Grid.RowSpan="5" Padding="0" HorizontalAlignment="Left"/>
         <Label Grid.Column="1" Grid.Row="11" Name="lblPhoneNumber" Content="Phone Number:" Padding="0" HorizontalAlignment="Right"/>
-        <Label Grid.Column="4" Grid.Row="11" Name="lblValidationPhoneNumber" Grid.ColumnSpan="7" Grid.RowSpan="5" Padding="0" HorizontalAlignment="Right"/>
+        <Label Grid.Column="4" Grid.Row="11" Name="lblValidationPhoneNumber" Grid.ColumnSpan="7" Grid.RowSpan="5" Padding="0" HorizontalAlignment="Left"/>
         <Label Grid.Column="9" Grid.Row="7" Name="lblDateOfBirth" Content="Date Of Birth:" Padding="0" HorizontalAlignment="Right"/>
-        <Label Grid.Column="4" Grid.Row="7" Name="lblValidationDateOfBirth" Grid.ColumnSpan="5" Grid.RowSpan="5" Padding="0" HorizontalAlignment="Left"/>
+        <Label Grid.Column="4" Grid.Row="7" Name="lblValidationDateOfBirth" Grid.ColumnSpan="5" Grid.RowSpan="5" Padding="0" HorizontalAlignment="Right"/>
         <Label Grid.Column="1" Grid.Row="13" Name="lblSector" Content="Sector:" Padding="0" HorizontalAlignment="Right"/>
         <Label Grid.Column="4" Grid.Row="13" Name="lblValidationSector" Grid.ColumnSpan="5" Grid.RowSpan="5" Padding="0" HorizontalAlignment="Left"/>
         <Label Grid.Column="9" Grid.Row="9" Name="lblLocation" Content="Location:" Padding="0" HorizontalAlignment="Right"/>
@@ -77,35 +77,35 @@
         <Label Grid.Column="9" Grid.Row="11" Name="lblMenager" Content="Menager:" Padding="0" HorizontalAlignment="Right"/>
         <Label Grid.Column="4" Grid.Row="11" Name="lblValidationMenager" Grid.ColumnSpan="7" Grid.RowSpan="5" Padding="0" HorizontalAlignment="Right"/>
         <TextBox Grid.Column="3" Grid.Row="5" Name="txtFullname" Height="20" Width="100" Grid.ColumnSpan="3" HorizontalAlignment="Left"
-               
+                 TextChanged="txtFullname_TextChanged"
                  Text="{Binding User.FullName, UpdateSourceTrigger=PropertyChanged}"/>
         <TextBox Grid.Column="3" Grid.Row="7" Name="txtIDNumber" Height="20" Width="100" Grid.ColumnSpan="3" HorizontalAlignment="Left"
-                 
+                 TextChanged="txtIDNumber_TextChanged"
                  Text="{Binding User.IDNumber, UpdateSourceTrigger=PropertyChanged}"/>
         <TextBox Grid.Column="3" Grid.Row="9" Name="txtJmbg" Height="20" Width="100" Grid.ColumnSpan="3" HorizontalAlignment="Left"
-                 
+                 TextChanged="txtJmbg_TextChanged"
                  Text="{Binding User.Jmbg, UpdateSourceTrigger=PropertyChanged}"/>
         <TextBox Grid.Column="3" Grid.Row="11" Name="txtPhoneNumber" Height="20" Width="100" Grid.ColumnSpan="3" HorizontalAlignment="Left"
-                 
+                 TextChanged="txtPhoneNumber_TextChanged"
                  Text="{Binding User.PhoneNumber, UpdateSourceTrigger=PropertyChanged}"/>
         <TextBox Grid.Column="3" Grid.Row="13" Name="txtSector" Height="20" Width="100" Grid.ColumnSpan="3" HorizontalAlignment="Left"
-                 
+                 TextChanged="txtSector_TextChanged"
                  Text="{Binding User.SectorName, UpdateSourceTrigger=PropertyChanged}"/>
         <ComboBox Grid.Column="11" Grid.Row="5" Name="cmbGender" Height="20" Width="100"  Grid.ColumnSpan="3" HorizontalAlignment="Left"
                   DisplayMemberPath="Name" Text="Gender" IsEditable="True" 
                   ItemsSource="{Binding GenderList, UpdateSourceTrigger=PropertyChanged}"                 
                   SelectedItem="{Binding SelectedGender, UpdateSourceTrigger=PropertyChanged}"
-                   
+                   SelectionChanged="cmbGender_SelectionChanged"
                   />
         <ComboBox Grid.Column="11" Grid.Row="9" Name="cmbLocation" Height="20" Width="100" Grid.ColumnSpan="3" HorizontalAlignment="Left"
                   DisplayMemberPath="Name" Text="Location" IsEditable="True"
                   ItemsSource="{Binding LocationList, UpdateSourceTrigger=PropertyChanged}"                 
                   SelectedItem="{Binding SelectedLocation, UpdateSourceTrigger=PropertyChanged}"
-                
+                  SelectionChanged="cmbLocation_SelectionChanged"
                   />
         <DatePicker Grid.Column="11" Grid.Row="7" Name="dpDateOfBirth" Height="25" Width="100" Grid.ColumnSpan="3" HorizontalAlignment="Left"
                   SelectedDate="{Binding User.Date, UpdateSourceTrigger=PropertyChanged}"
-            
+                  SelectedDateChanged="dpDateOfBirth_SelectedDateChanged"
                     />
         <ComboBox Grid.Column="11" Grid.Row="11" Name="cmbMenager" Height="20" Width="100" Grid.ColumnSpan="3" HorizontalAlignment="Left"
                   DisplayMemberPath="FullName" Text="Menager" IsEditable="True"
@@ -117,10 +117,11 @@
                   Visibility="{Binding IsForEdit, Converter={StaticResource BoolToVisibilityConverter}}"
                   ItemsSource="{Binding MenagerListForEdit, UpdateSourceTrigger=PropertyChanged}"                 
                   SelectedItem="{Binding SelectedMenagerForEdit, UpdateSourceTrigger=PropertyChanged}"              
+                 SelectionChanged="cmbMenagerForEdit_SelectionChanged"
                   />
         <Button Grid.Column="5" Grid.Row="17" Name="btnSave" Content="Add" IsEnabled="True" Height="20" 
                 Visibility="{Binding IsForEdit, Converter={StaticResource BoolToVisibilityInverseConverter}}"
-                Width="70" HorizontalAlignment="Left" Command="{Binding Save, UpdateSourceTrigger=PropertyChanged}"
+                Width="70" HorizontalAlignment="Left" Click="btnSave_Click"
                />
         <Button Grid.Column="5" Grid.Row="17" Name="btnEdit" Content="Edit" IsEnabled="True" Height="20" 
                 Visibility="{Binding IsForEdit, Converter={StaticResource BoolToVisibilityConverter}}"

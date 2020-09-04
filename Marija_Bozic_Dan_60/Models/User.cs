@@ -10,7 +10,7 @@ namespace Marija_Bozic_Dan_60.Models
     {
         public int UserId { get; set; }
         public string FullName { get; set; }
-        public DateTime Date { get; set; } = DateTime.Now;
+        public DateTime Date { get; set; } = DateTime.Today;
         public int IDNumber { get; set; }
         public long Jmbg { get; set; }
         public int GenderId { get; set; }
