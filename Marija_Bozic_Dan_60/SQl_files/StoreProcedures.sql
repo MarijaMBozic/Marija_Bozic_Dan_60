@@ -17,7 +17,9 @@ GO
 
 CREATE or alter PROCEDURE Get_AllUsers
 AS
-	select UserId, FullName,DateOfBirth,IDNumber, JMBG, PhoneNumber,tblGender.Name, tblSector.Name, tblLocation.Name , MenagerId  from tblUser
+	select UserId, FullName,DateOfBirth,IDNumber, JMBG, PhoneNumber,tblGender.Name, 
+	tblSector.Name, tblLocation.Name , 
+	MenagerId, tblUser.GenderId, tblUser.SectorId, tblUser.LocationId  from tblUser
 	left join tblGender on tblUser.GenderId = tblGender.GenderId
 	left join tblSector on tblUser.SectorId = tblSector.SectorId
 	left join tblLocation on tblUser.LocationId = tblLocation.LocationId
@@ -63,9 +65,18 @@ CREATE or alter PROCEDURE Insert_User
     @LocationId int,     
     @MenagerId  int   
 AS
-	insert into tblUser(FullName,DateOfBirth,IDNumber, JMBG, PhoneNumber,GenderId, SectorId, LocationId, MenagerId)
-	values(	@FullName,@DateOfBirth,	@IDNumber, @JMBG ,@PhoneNumber, @GenderId ,  @SectorId ,  @LocationId ,@MenagerId) 
+if @MenagerId=0
+begin
+	insert into tblUser(FullName,DateOfBirth,IDNumber, JMBG, PhoneNumber,GenderId, SectorId, LocationId)
+	values(	@FullName,@DateOfBirth,	@IDNumber, @JMBG ,@PhoneNumber, @GenderId ,  @SectorId ,  @LocationId ) 
 	select SCOPE_IDENTITY()
+end
+if @MenagerId!=0
+begin
+	insert into tblUser(FullName,DateOfBirth,IDNumber, JMBG, PhoneNumber,GenderId, SectorId, LocationId, MenagerId)
+	values(	@FullName,@DateOfBirth,	@IDNumber, @JMBG ,@PhoneNumber, @GenderId ,  @SectorId ,  @LocationId, @MenagerId ) 
+	select SCOPE_IDENTITY()
+end
 GO
 
 CREATE or alter PROCEDURE Insert_Sector
@@ -93,7 +104,9 @@ go
 CREATE or alter PROCEDURE Get_UsersById
 	@UserId int
 AS
-	select UserId, FullName,DateOfBirth,IDNumber, JMBG, PhoneNumber,tblUser.GenderId, tblGender.Name,tblUser.SectorId, tblSector.Name,tblUser.LocationId, tblLocation.Name , MenagerId  from tblUser
+	select UserId, FullName,DateOfBirth,IDNumber, JMBG, PhoneNumber,tblUser.GenderId, 
+	tblGender.Name,tblUser.SectorId, tblSector.Name,tblUser.LocationId, tblLocation.Name ,
+	 MenagerId, tblUser.GenderId, tblUser.SectorId, tblUser.LocationId  from tblUser
 	left join tblGender on tblUser.GenderId = tblGender.GenderId
 	left join tblSector on tblUser.SectorId = tblSector.SectorId
 	left join tblLocation on tblUser.LocationId = tblLocation.LocationId
@@ -108,16 +121,33 @@ AS
 	where IDNumber=@IDNumber
 GO
 
-CREATE PROCEDURE Check_JMBG
-@JMBG int
+CREATE or alter PROCEDURE Check_JMBG
+@JMBG bigint
 AS
 	select FullName from tblUser
 	where JMBG=@JMBG
 GO
 
 CREATE or alter PROCEDURE Check_SectorName
-@SectorName int
+@SectorName nvarchar(100)
 AS
 	select SectorId from tblSector
 	where Name=@SectorName
+GO
+
+insert into tblSector(Name)
+values('HR')
+
+CREATE or alter PROCEDURE Check_JMBG_Update
+@JMBG bigint, @UserId int
+AS
+	select FullName from tblUser
+	where JMBG=@JMBG and UserId=@UserId
+GO
+
+CREATE PROCEDURE Check_IDNumber_Update
+@IDNumber int, @UserId int
+AS
+	select FullName from tblUser
+	where IDNumber=@IDNumber and UserId=@UserId
 GO

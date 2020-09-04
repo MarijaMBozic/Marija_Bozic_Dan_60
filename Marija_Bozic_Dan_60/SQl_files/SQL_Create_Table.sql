@@ -40,6 +40,6 @@ create table tblUser (
    )
 
    insert into tblGender(Name)
-   values('Femail'),
+   values('Female'),
 		 ('Male'), 
 		 ('Other')

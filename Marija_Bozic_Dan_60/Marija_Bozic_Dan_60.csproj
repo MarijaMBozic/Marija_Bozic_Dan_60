@@ -74,15 +74,21 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="DTO\UserDTO.cs" />
+    <Compile Include="Converters\BoolToVisibilityConverter.cs" />
+    <Compile Include="Converters\BoolToVisibilityInverseConverter.cs" />
     <Compile Include="Helper\ConnectionHelper.cs" />
     <Compile Include="Models\Gender.cs" />
     <Compile Include="Models\Location.cs" />
     <Compile Include="Models\Sector.cs" />
     <Compile Include="Models\User.cs" />
+    <Compile Include="Service\ReadTxtFile.cs" />
     <Compile Include="Service\ServiceCode.cs" />
+    <Compile Include="ViewModels\AddEditNewWorkerViewModel.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
+    <Compile Include="Views\AddEditNewWorkerView.xaml.cs">
+      <DependentUpon>AddEditNewWorkerView.xaml</DependentUpon>
+    </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -96,6 +102,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Views\AddEditNewWorkerView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -126,8 +136,9 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="SQl_files\" />
-    <Folder Include="TXTFiles\" />
-    <Folder Include="Views\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="TXTFiles\Lokacije.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

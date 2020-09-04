@@ -14,10 +14,13 @@ namespace Marija_Bozic_Dan_60.Models
         public int IDNumber { get; set; }
         public long Jmbg { get; set; }
         public int GenderId { get; set; }
-        public string PhoneNumber{ get; set; }
+        public string GenderName { get; set; }
+        public string PhoneNumber { get; set; }
+        public string SectorName { get; set; }
+        public string LocationName { get; set; }
         public int SectorId { get; set; }
         public int LocationId { get; set; }
         public int MenagerId { get; set; }
-
+        public string MenagerName { get; set; }
     }
 }
