@@ -15,7 +15,7 @@ AS
 	select LocationId, Name  from tblLocation
 GO
 
-CREATE or alter PROCEDURE Get_AllUsers
+CREATE PROCEDURE Get_AllUsers
 AS
 	select UserId, FullName,DateOfBirth,IDNumber, JMBG, PhoneNumber,tblGender.Name, 
 	tblSector.Name, tblLocation.Name , 
@@ -26,7 +26,7 @@ AS
 
 GO
 
-CREATE or alter PROCEDURE Update_User
+CREATE PROCEDURE Update_User
 	@UserId  int,
 	@FullName nvarchar(100),
 	@DateOfBirth date,
@@ -54,7 +54,7 @@ AS
 
 GO
 
-CREATE or alter PROCEDURE Insert_User
+CREATE PROCEDURE Insert_User
 	@FullName nvarchar(100),
 	@DateOfBirth date,
 	@IDNumber int,
@@ -79,7 +79,7 @@ begin
 end
 GO
 
-CREATE or alter PROCEDURE Insert_Sector
+CREATE PROCEDURE Insert_Sector
 	@Name nvarchar(100)
 AS
 	insert into tblSector(Name)
@@ -87,7 +87,7 @@ AS
 	select SCOPE_IDENTITY()
 GO
 
-CREATE or alter PROCEDURE Insert_Location
+CREATE PROCEDURE Insert_Location
 	@Name nvarchar(100)
 AS
 	insert into tblLocation(Name)
@@ -95,13 +95,13 @@ AS
 	select SCOPE_IDENTITY()
 GO
 
-CREATE OR ALTER PROCEDURE Delete_User
+CREATE PROCEDURE Delete_User
 	@UserId int
 as
 	Delete from tblUser where UserId=@UserId
 go
 
-CREATE or alter PROCEDURE Get_UsersById
+CREATE PROCEDURE Get_UsersById
 	@UserId int
 AS
 	select UserId, FullName,DateOfBirth,IDNumber, JMBG, PhoneNumber,tblUser.GenderId, 
@@ -121,14 +121,14 @@ AS
 	where IDNumber=@IDNumber
 GO
 
-CREATE or alter PROCEDURE Check_JMBG
+CREATE PROCEDURE Check_JMBG
 @JMBG bigint
 AS
 	select FullName from tblUser
 	where JMBG=@JMBG
 GO
 
-CREATE or alter PROCEDURE Check_SectorName
+CREATE PROCEDURE Check_SectorName
 @SectorName nvarchar(100)
 AS
 	select SectorId from tblSector
@@ -138,7 +138,7 @@ GO
 insert into tblSector(Name)
 values('HR')
 
-CREATE or alter PROCEDURE Check_JMBG_Update
+CREATE PROCEDURE Check_JMBG_Update
 @JMBG bigint, @UserId int
 AS
 	select FullName from tblUser

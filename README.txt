@@ -1,0 +1,1 @@
+Za uspesno izvrsavanja akcija potrebno je pokrenuti store procedure iz fajla StoreProcedure
